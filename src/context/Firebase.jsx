@@ -4,13 +4,13 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Go
 
 const FirebaseContext = createContext(null);
 const firebaseConfig = {
-    apiKey: "AIzaSyAcqh-rwXDpHnfSTDov-R__95ooiYhep7c",
-    authDomain: "aimockint.firebaseapp.com",
-    projectId: "aimockint",
-    storageBucket: "aimockint.firebasestorage.app",
-    messagingSenderId: "509995101774",
-    appId: "1:509995101774:web:3f78fc065074f106739d1f",
-    measurementId: "G-FJESZW7Q3G"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
+    measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
