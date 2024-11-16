@@ -4,6 +4,7 @@ import SignUpForm from "./authPages/SignUpForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./authPages/LoginForm";
 import InterviewForm from "./pages/components/InterviewForm";
+import InterviewPage from "./pages/InterviewPage";
 import { useFirebase } from "./context/Firebase";
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="/login" element={<LoginForm />} />
       <Route path="/interviewForm" element={<InterviewForm />} />
+      <Route path="/interviewPage" element={<InterviewPage/>}/>
     </Routes>
   )
 }

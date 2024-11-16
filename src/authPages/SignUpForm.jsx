@@ -40,9 +40,9 @@ const SignUpForm = () => {
     }
   }, [firebase,navigate]);
   return (
-    <div
-      className="flex justify-center items-center h-screen bg-cover bg-center"
-      style={{ backgroundImage: 'url(/assets/image1.jpg)' }}
+    <div 
+      className="flex justify-center items-center h-screen bg-cover bg-center" 
+      style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover"}}
     >
       <Card className="w-full max-w-md">
         <CardHeader>
