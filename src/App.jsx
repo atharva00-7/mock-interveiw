@@ -13,8 +13,8 @@ const App = () => {
   return(
     <Routes>
       <Route path="/" element={<HomePage isLoggedIn={isLoggedIn}/>} />
-      <Route path="/signup" element={<SignUpForm isLoggedIn={isLoggedIn}/>} />
-      <Route path="/login" element={<LoginForm isLoggedIn={isLoggedIn}/>} />
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/login" element={<LoginForm />} />
       <Route path="/interviewForm" element={<InterviewForm />} />
     </Routes>
   )
