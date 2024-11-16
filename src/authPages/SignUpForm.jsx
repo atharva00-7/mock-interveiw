@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { useFirebase } from '@/context/Firebase';
+import texts from "../constants/texts.json";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -38,7 +39,7 @@ const SignUpForm = () => {
     >
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign up to Prometheus</CardTitle>
+          <CardTitle>{texts.signupPage.cardTitle}</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -49,7 +50,7 @@ const SignUpForm = () => {
               onClick={firebase.signUpWithGoogle}
             >
               <FcGoogle size={24} />
-              Sign up with Google
+              {texts.signupPage.googleSignup}
             </Button>
 
             <p className="text-center my-4">or</p>
@@ -73,29 +74,29 @@ const SignUpForm = () => {
             <p className="text-center my-4"></p>
 
             <Button type="submit" variant="outline" className="w-full">
-              Submit
+             {texts.signupPage.sumbitButton}
             </Button>
           </form>
 
           <div className="text-sm text-gray-500 mt-4 text-center">
-            By creating an account you agree with our{' '}
+            {texts.signupPage.footer1}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-              Terms of Service
+            {texts.signupPage.footer2}
             </a>
             ,{' '}
             <a href="#" className="text-primary-600 hover:underline">
-              Privacy Policy
+            {texts.signupPage.footer3}
             </a>
-            , and our default{' '}
+            , {texts.signupPage.footer4}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-              Notification Settings
+            {texts.signupPage.footer5}
             </a>
             .
           </div>
           <p className="text-sm text-gray-500 mt-4 text-center">
-            Already have an account?{' '}
+          {texts.signupPage.footer6}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-              Sign In
+            {texts.signupPage.footer7}
             </a>
           </p>
         </CardContent>
