@@ -4,11 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { useFirebase } from '@/context/Firebase';
-<<<<<<< HEAD
 import texts from "../constants/texts.json";
-=======
 import { useNavigate } from 'react-router-dom';
->>>>>>> atharva
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
