@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { useFirebase } from '@/context/Firebase';
+<<<<<<< HEAD
 import texts from "../constants/texts.json";
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> atharva
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -12,7 +16,8 @@ const SignUpForm = () => {
     password: ''
   });
   const firebase = useFirebase();
-
+  const isLoggedIn = firebase.isLoggedIn;
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -21,20 +26,25 @@ const SignUpForm = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData.email,formData.password);
-    const result = await firebase.createNewUserWithEmailAndPassword(formData.email,formData.password);
+    console.log(formData.email, formData.password);
+    const result = await firebase.createNewUserWithEmailAndPassword(formData.email, formData.password);
+    if(result) {
+      navigate('/');
+    }
     console.log(result, 'Successfully logged in!');
   };
 
-  const handleGoogleSignUp = () => {
-    console.log('Google sign up clicked');
-  };
-
+  useEffect(() => {
+    console.log(isLoggedIn);
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [firebase,navigate]);
   return (
-    <div 
-      className="flex justify-center items-center h-screen bg-cover bg-center" 
+    <div
+      className="flex justify-center items-center h-screen bg-cover bg-center"
       style={{ backgroundImage: 'url(/assets/image1.jpg)' }}
     >
       <Card className="w-full max-w-md">
@@ -43,9 +53,9 @@ const SignUpForm = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
-            <Button 
+            <Button
               type="button"
-              variant="outline" 
+              variant="outline"
               className="w-full bg-black text-white hover:bg-black hover:text-white hover:opacity-80"
               onClick={firebase.signUpWithGoogle}
             >
@@ -55,19 +65,19 @@ const SignUpForm = () => {
 
             <p className="text-center my-4">or</p>
 
-            <Input 
-              type="email" 
+            <Input
+              type="email"
               name="email"
-              placeholder="Continue with email" 
+              placeholder="Continue with email"
               value={formData.email}
               onChange={handleChange}
             />
             <p className="text-center my-4"></p>
 
-            <Input 
-              type="password" 
+            <Input
+              type="password"
               name="password"
-              placeholder="Continue with password" 
+              placeholder="Continue with password"
               value={formData.password}
               onChange={handleChange}
             />
