@@ -31,7 +31,7 @@ const LoginForm = () => {
     console.log(password);
   }
   return (
-    <div className="flex justify-center items-center h-screen" style={{ backgroundImage: 'url(/assets/image1.jpg)' }}>
+    <div className="flex justify-center items-center h-screen" style={{ backgroundImage: 'url(src/assets/image1.jpg)' }}>
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Sign in to Dribbble</CardTitle>

@@ -34,7 +34,7 @@ const SignUpForm = () => {
   return (
     <div 
       className="flex justify-center items-center h-screen bg-cover bg-center" 
-      style={{ backgroundImage: 'url(/assets/image1.jpg)' }}
+      style={{ backgroundImage: 'url(src/assets/image1.jpg)' }}
     >
       <Card className="w-full max-w-md">
         <CardHeader>
