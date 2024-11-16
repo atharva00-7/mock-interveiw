@@ -1,53 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFirebase } from "../context/Firebase";
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
-
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const firebase = useFirebase();
+  const navigate = useNavigate();
+  const isLoggedIn = firebase.isLoggedIn;
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const result = await firebase.signInUserWithEmailAndPassword(email, password);
-      console.log(result, "Successfully logged in!");
+      if (result) {
+        navigate('/');
+      }
     } catch (error) {
       console.error(error);
       console.log(error);
       setError(error);
     }
   };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-    console.log(email);
-  }
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-    console.log(password);
-  }
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate('/');
+    }
+  }, [firebase, navigate]);
   return (
     <div className="flex justify-center items-center h-screen" style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover" }}>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign in to Dribbble</CardTitle>
+          <CardTitle>Sign in to Prometheus</CardTitle>
         </CardHeader>
         <CardContent>
-          <Button variant="outline" className="w-full bg-black text-white hover:bg-black hover:text-white hover:opacity-80">
-            <FcGoogle size={24} />
-            Sign in with Google
-          </Button>
-          <p className="text-center my-4">or</p>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <form onSubmit={handleSubmit}>
+            <Button variant="outline" className="w-full bg-black text-white hover:bg-black hover:text-white hover:opacity-80" onClick={firebase.signUpWithGoogle}>
+              <FcGoogle size={24} />
+              Sign in with Google
+            </Button>
+            <p className="text-center my-4">or</p>
             <Input
               type="email"
               value={email}
-              onChange={handleEmailChange}
+              placeholder="Enter email"
+              onChange={e => setEmail(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               required
             />
@@ -55,7 +57,8 @@ const LoginForm = () => {
             <Input
               type="password"
               value={password}
-              onChange={handlePasswordChange}
+              placeholder="Enter password"
+              onChange={e => setPassword(e.target.value)}
               className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"
               required
             />

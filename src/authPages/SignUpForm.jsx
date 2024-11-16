@@ -8,41 +8,34 @@ import texts from "../constants/texts.json";
 import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const firebase = useFirebase();
   const isLoggedIn = firebase.isLoggedIn;
   const navigate = useNavigate();
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData.email, formData.password);
-    const result = await firebase.createNewUserWithEmailAndPassword(formData.email, formData.password);
-    if(result) {
-      navigate('/');
+    try {
+      const result = await firebase.createNewUserWithEmailAndPassword(email, password);
+      if (result) {
+        navigate('/');
+      }
+    } catch (error) {
+      console.error(error);
+      console.log(error);
     }
-    console.log(result, 'Successfully logged in!');
   };
-
   useEffect(() => {
-    console.log(isLoggedIn);
+    console.log(isLoggedIn)
     if (isLoggedIn) {
       navigate('/');
     }
-  }, [firebase,navigate]);
+  }, [firebase, navigate]);
   return (
-    <div 
-      className="flex justify-center items-center h-screen bg-cover bg-center" 
-      style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover"}}
+    <div
+      className="flex justify-center items-center h-screen bg-cover bg-center"
+      style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover" }}
     >
       <Card className="w-full max-w-md">
         <CardHeader>
@@ -66,8 +59,8 @@ const SignUpForm = () => {
               type="email"
               name="email"
               placeholder="Continue with email"
-              value={formData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={e => setEmail(e.target.value)}
             />
             <p className="text-center my-4"></p>
 
@@ -75,35 +68,35 @@ const SignUpForm = () => {
               type="password"
               name="password"
               placeholder="Continue with password"
-              value={formData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
             <p className="text-center my-4"></p>
 
             <Button type="submit" variant="outline" className="w-full">
-             {texts.signupPage.sumbitButton}
+              {texts.signupPage.sumbitButton}
             </Button>
           </form>
 
           <div className="text-sm text-gray-500 mt-4 text-center">
             {texts.signupPage.footer1}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-            {texts.signupPage.footer2}
+              {texts.signupPage.footer2}
             </a>
             ,{' '}
             <a href="#" className="text-primary-600 hover:underline">
-            {texts.signupPage.footer3}
+              {texts.signupPage.footer3}
             </a>
             , {texts.signupPage.footer4}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-            {texts.signupPage.footer5}
+              {texts.signupPage.footer5}
             </a>
             .
           </div>
           <p className="text-sm text-gray-500 mt-4 text-center">
-          {texts.signupPage.footer6}{' '}
+            {texts.signupPage.footer6}{' '}
             <a href="#" className="text-primary-600 hover:underline">
-            {texts.signupPage.footer7}
+              {texts.signupPage.footer7}
             </a>
           </p>
         </CardContent>
