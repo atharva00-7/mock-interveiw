@@ -62,12 +62,22 @@ const InterviewPage = () => {
     }
   };
 
+  const speakQuestion = (questionIndex) => {
+    if (isSpeakerOn && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel(); // Cancel any ongoing speech
+      const utterance = new SpeechSynthesisUtterance(questions[questionIndex]);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   const handleNextQuestion = () => {
     if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(prev => prev + 1);
-      window.speechSynthesis.cancel(); // Cancel any ongoing speech
+      const nextQuestionIndex = currentQuestion + 1;
+      setCurrentQuestion(nextQuestionIndex);
+      
       if (isSpeakerOn) {
-        setTimeout(speakQuestion, 500); // Slight delay before speaking next question
+        // Speak the new question after state update
+        setTimeout(() => speakQuestion(nextQuestionIndex), 100);
       }
     }
   };
@@ -75,14 +85,7 @@ const InterviewPage = () => {
   const handleStartInterview = () => {
     if (isVideoOn && isAudioOn) {
       setIsInterviewStarted(true);
-      speakQuestion();
-    }
-  };
-
-  const speakQuestion = () => {
-    if (isSpeakerOn && 'speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(questions[currentQuestion]);
-      window.speechSynthesis.speak(utterance);
+      speakQuestion(currentQuestion);
     }
   };
 
@@ -178,7 +181,7 @@ const InterviewPage = () => {
                     </Button>
 
                     <Button 
-                      onClick={speakQuestion} 
+                      onClick={() => speakQuestion(currentQuestion)} 
                       disabled={!isSpeakerOn}
                       size="lg"
                       className="flex-1"

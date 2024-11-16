@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/select"
 function InterviewForm() {
     return (
-        <div className={`min-h-screen w-full flex items-center justify-center p-4 bg-[url('https://static.vecteezy.com/system/resources/previews/027/231/616/non_2x/illustration-graphic-of-aesthetic-colorful-background-template-with-minimalist-pastel-colors-and-abstract-fluid-shapes-simple-and-minimalist-background-template-vector.jpg')] bg-cover`}>
+        <div className={`min-h-screen w-full flex items-center justify-center p-4 `} style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover"}}>
 
             <div>
 
