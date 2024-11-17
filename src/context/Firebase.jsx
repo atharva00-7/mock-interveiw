@@ -17,6 +17,9 @@ const app = initializeApp(firebaseConfig);
 export const useFirebase = () => useContext(FirebaseContext);
 const firebaseAuth = getAuth(app)
 const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+    prompt: 'select_account'
+  });
 export const FirebaseProvider = (props) => {
     const [user, setUser] = useState(null);
     useEffect(() => {
@@ -24,7 +27,7 @@ export const FirebaseProvider = (props) => {
             if (user) setUser(user);
             else setUser(null);
         })
-    }, []);
+    }, [user]);
     const isLoggedIn = user ? true : false;
     const createNewUserWithEmailAndPassword = (email, password) => createUserWithEmailAndPassword(firebaseAuth, email, password);
     const signInUserWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(firebaseAuth, email, password);

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { FcGoogle } from 'react-icons/fc';
-import { useFirebase } from '@/context/Firebase';
+import { FcGoogle } from 'react-icons/fc'; 
+import { useFirebase } from "../context/Firebase";
 import texts from "../constants/texts.json";
 import { useNavigate } from 'react-router-dom';
 
@@ -11,24 +11,20 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const firebase = useFirebase();
-  const isLoggedIn = firebase.isLoggedIn;
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await firebase.createNewUserWithEmailAndPassword(email, password);
-      if (result) {
-        navigate('/');
-      }
+      await firebase.createNewUserWithEmailAndPassword(email, password);
     } catch (error) {
       console.error(error);
       console.log(error);
     }
   };
   useEffect(() => {
-    console.log(isLoggedIn)
-    if (isLoggedIn) {
+    console.log(firebase.isLoggedIn)
+    if (firebase.isLoggedIn) {
       navigate('/');
     }
   }, [firebase, navigate]);

@@ -6,15 +6,27 @@ import LoginForm from "./authPages/LoginForm";
 import InterviewForm from "./pages/components/InterviewForm";
 import InterviewPage from "./pages/InterviewPage";
 import Wildcard from "./pages/Wildcard";
+import { useFirebase } from "./context/Firebase";
 
 const App = () => {
-  return(
+  const firebase = useFirebase();
+  return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/signup" element={<SignUpForm />} />
-      <Route path="/login" element={<LoginForm />} />
-      <Route path="/interviewForm" element={<InterviewForm />} />
-      <Route path="/interviewPage" element={<InterviewPage/>}/>
+      {!firebase.isLoggedIn && (
+        <><Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/login" element={<LoginForm />} /></>
+      )}
+      
+      {
+        firebase.isLoggedIn && (
+          <>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/interviewForm" element={<InterviewForm />} />
+          <Route path="/interviewPage" element={<InterviewPage />} />
+          </>
+        )
+      }
       <Route path="*" element={<Wildcard />} />
     </Routes>
   )

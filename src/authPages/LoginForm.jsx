@@ -17,9 +17,6 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const result = await firebase.signInUserWithEmailAndPassword(email, password);
-      if (result) {
-        navigate('/');
-      }
     } catch (error) {
       console.error(error);
       console.log(error);
