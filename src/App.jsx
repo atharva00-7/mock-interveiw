@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import LoginForm from "./authPages/LoginForm";
 import InterviewForm from "./pages/components/InterviewForm";
 import InterviewPage from "./pages/InterviewPage";
+import Wildcard from "./pages/Wildcard";
 
 const App = () => {
   return(
@@ -14,6 +15,7 @@ const App = () => {
       <Route path="/login" element={<LoginForm />} />
       <Route path="/interviewForm" element={<InterviewForm />} />
       <Route path="/interviewPage" element={<InterviewPage/>}/>
+      <Route path="*" element={<Wildcard />} />
     </Routes>
   )
 }
