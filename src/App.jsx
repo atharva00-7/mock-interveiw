@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import SignUpForm from "./authPages/SignUpForm";
 import HomePage from "./pages/HomePage";
 import LoginForm from "./authPages/LoginForm";
@@ -12,22 +12,29 @@ const App = () => {
   const firebase = useFirebase();
   return (
     <Routes>
-      {!firebase.isLoggedIn && (
-        <><Route path="/" element={<HomePage />} />
-          <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/login" element={<LoginForm />} /></>
-      )}
-      
       {
-        firebase.isLoggedIn && (
+        !firebase.isLoggedIn && (
           <>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/interviewForm" element={<InterviewForm />} />
-          <Route path="/interviewPage" element={<InterviewPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/login" element={<LoginForm />} />
           </>
         )
       }
-      <Route path="*" element={<Wildcard />} />
+
+      {
+        firebase.isLoggedIn && (
+          <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signup" element={<Navigate to='/' />} />
+            <Route path="/login" element={<Navigate to='/' />} />
+            <Route path="/interviewForm" element={<InterviewForm />} />
+            <Route path="/interviewPage" element={<InterviewPage />} />
+          </>
+        )
+      }
+
+      {/* <Route path='*' element={<Wildcard />} /> */}
     </Routes>
   )
 }

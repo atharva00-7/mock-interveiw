@@ -10,5 +10,18 @@
         "footer5": " Notification Settings",
         "footer6": "Already have an account?",
         "footer7": "Log In"
+    },
+    "loginPage": {
+        "googleLogin": "Sign in with Google",
+        "submitButton": "Login",
+        "orSeparator": "or",
+        "footer1": "By creating an account you agree with our",
+        "footer2": "Terms of Service",
+        "footer3": "Privacy Policy",
+        "footer4": "and our default",
+        "footer5": "Notification Settings",
+        "footer6": "Don't have an account?",
+        "footer7": "Sign Up"
+
     }
 }

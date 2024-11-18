@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from "react-router-dom";
+import texts from "../constants/texts.json";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ const LoginForm = () => {
     <div className="flex justify-center items-center h-screen" style={{ backgroundImage: 'url(src/assets/image1.jpg)', backgroundSize: "cover" }}>
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign in to Prometheus</CardTitle>
+          <CardTitle>{texts.loginPage.cardTitle}</CardTitle>
         </CardHeader>
         <CardContent>
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
