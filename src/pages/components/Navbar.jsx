@@ -10,7 +10,9 @@ const Navbar = () => {
   const isLoggedIn = firebase.isLoggedIn;
   const navLinkStyles = "hover:text-slate-900 transition-colors";
   const activeStyle = "text-slate-900 font-medium";
-
+  const handleSignout = async() => {
+    await firebase.doSignOut();
+  }
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
@@ -64,6 +66,9 @@ const Navbar = () => {
               />
               Profile
             </NavLink>
+            <Button onClick={handleSignout}>
+              Sign Out
+            </Button>
 
             {(isMenuOpen && isLoggedIn) && (
               <div className="absolute top-14 left-0 right-0 bg-white border-b md:hidden">

@@ -4,7 +4,6 @@ import {
     CardContent,
 } from "@/components/ui/card"
 import { User } from 'lucide-react';
-x
 import {
     DropdownMenu,
     DropdownMenuContent,

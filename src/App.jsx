@@ -1,13 +1,11 @@
 import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import SignUpForm from "./authPages/SignUpForm";
 import HomePage from "./pages/HomePage";
-import LoginForm from "./authPages/LoginForm";
-import InterviewForm from "./pages/components/InterviewForm";
 import InterviewPage from "./pages/InterviewPage";
-import Wildcard from "./pages/Wildcard";
 import { useFirebase } from "./context/Firebase";
-
+import InterviewDetailPage from "./pages/InterviewDetailPage";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 const App = () => {
   const firebase = useFirebase();
   return (
@@ -16,8 +14,8 @@ const App = () => {
         !firebase.isLoggedIn && (
           <>
             <Route path="/" element={<HomePage />} />
-            <Route path="/signup" element={<SignUpForm />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </>
         )
       }
@@ -28,7 +26,7 @@ const App = () => {
             <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<Navigate to='/' />} />
             <Route path="/login" element={<Navigate to='/' />} />
-            <Route path="/interviewForm" element={<InterviewForm />} />
+            <Route path="/interviewForm" element={<InterviewDetailPage />} />
             <Route path="/interviewPage" element={<InterviewPage />} />
           </>
         )

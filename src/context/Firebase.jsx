@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createContext, useContext, useState, useEffect } from "react";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
+import {getFirestore, collection, addDoc} from "firebase/firestore";
 
 const FirebaseContext = createContext(null);
 const firebaseConfig = {
@@ -15,8 +16,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const useFirebase = () => useContext(FirebaseContext);
-const firebaseAuth = getAuth(app)
+const firebaseAuth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const firestore = getFirestore(app);
 googleProvider.setCustomParameters({
     prompt: 'select_account'
   });
@@ -32,8 +34,9 @@ export const FirebaseProvider = (props) => {
     const createNewUserWithEmailAndPassword = (email, password) => createUserWithEmailAndPassword(firebaseAuth, email, password);
     const signInUserWithEmailAndPassword = (email, password) => signInWithEmailAndPassword(firebaseAuth, email, password);
     const signUpWithGoogle = () => signInWithPopup(firebaseAuth, googleProvider);
+    const doSignOut = () => signOut(firebaseAuth);
     return (
-        <FirebaseContext.Provider value={{ signUpWithGoogle, createNewUserWithEmailAndPassword, signInUserWithEmailAndPassword, isLoggedIn }}>
+        <FirebaseContext.Provider value={{ signUpWithGoogle, createNewUserWithEmailAndPassword, signInUserWithEmailAndPassword, isLoggedIn, doSignOut }}>
             {props.children}
         </FirebaseContext.Provider>
     )

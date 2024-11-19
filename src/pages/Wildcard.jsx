@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Wildcard = () => {
   return (
@@ -10,4 +10,4 @@ const Wildcard = () => {
   )
 }
 
-export default Wildcard
+export default Wildcard;
