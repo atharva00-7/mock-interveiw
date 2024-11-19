@@ -6,11 +6,9 @@ import { FirebaseProvider } from './context/Firebase'
 import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <FirebaseProvider>
-        <App />
-      </FirebaseProvider>
-    </BrowserRouter>
-  </StrictMode>,
+  <BrowserRouter>
+    <FirebaseProvider>
+      <App />
+    </FirebaseProvider>
+  </BrowserRouter>
 )

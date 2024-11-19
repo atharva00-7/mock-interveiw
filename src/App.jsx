@@ -31,8 +31,6 @@ const App = () => {
           </>
         )
       }
-
-      {/* <Route path='*' element={<Wildcard />} /> */}
     </Routes>
   )
 }
