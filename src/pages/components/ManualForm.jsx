@@ -18,6 +18,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useFirebase } from "../../context/Firebase";
 
 const ManualForm = () => {
     const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const ManualForm = () => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
-
+    const firebase = useFirebase();
     const handleInterviewTypeChange = (value) => {
         setFormData(prev => ({
             ...prev,
@@ -70,6 +71,7 @@ Do not include any text before or after the JSON.`
             const questionInJson = questionList.response.text().replace("```json", "").replace("```", "");
             const parsedQuestions = JSON.parse(questionInJson);
             console.log("Parsed questions:", parsedQuestions);
+            await firebase.addQuestionToDatabase(parsedQuestions);
         } catch (error) {
             console.error('Error submitting form:', error);
         } finally {
