@@ -19,6 +19,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useFirebase } from "../../context/Firebase";
+import { useNavigate } from 'react-router-dom';
 
 const ManualForm = () => {
     const [formData, setFormData] = useState({
@@ -28,6 +29,7 @@ const ManualForm = () => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
     const firebase = useFirebase();
     const handleInterviewTypeChange = (value) => {
         setFormData(prev => ({
@@ -76,6 +78,7 @@ Do not include any text before or after the JSON.`
             console.error('Error submitting form:', error);
         } finally {
             setIsLoading(false);
+            navigate('/interviewPage');
         }
     };
 

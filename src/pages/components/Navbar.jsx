@@ -37,7 +37,7 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           {isLoggedIn ? <div className="hidden md:flex items-center gap-6">
-            <NavLink
+            {/* <NavLink
               to="/dashboard"
               className={({ isActive }) =>
                 `${navLinkStyles} ${isActive ? activeStyle : 'text-slate-600'}`
@@ -52,7 +52,7 @@ const Navbar = () => {
               }
             >
               New Interview
-            </NavLink>
+            </NavLink> */}
             <NavLink
               to="/profile"
               className={({ isActive }) =>
@@ -73,7 +73,7 @@ const Navbar = () => {
             {(isMenuOpen && isLoggedIn) && (
               <div className="absolute top-14 left-0 right-0 bg-white border-b md:hidden">
                 <div className="flex flex-col p-4 space-y-4">
-                  <NavLink
+                  {/* <NavLink
                     to="/dashboard"
                     className={({ isActive }) =>
                       `${navLinkStyles} ${isActive ? activeStyle : 'text-slate-600'}`
@@ -90,7 +90,7 @@ const Navbar = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     New Interview
-                  </NavLink>
+                  </NavLink> */}
                   <NavLink
                     to="/profile"
                     className={({ isActive }) =>

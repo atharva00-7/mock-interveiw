@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { createContext, useContext, useState, useEffect } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+import { getFirestore, collection, addDoc, getDocs, orderBy, query, limit } from "firebase/firestore";
 
 const FirebaseContext = createContext(null);
 const firebaseConfig = {
@@ -37,19 +37,23 @@ export const FirebaseProvider = (props) => {
     const doSignOut = () => signOut(firebaseAuth);
     const addQuestionToDatabase = async (questions) => {
         await addDoc(collection(firestore, 'interviews'), {
-            userID: user.uid,
+            answerList: '',
+            questionsList: questions,
             timestamp: new Date().getTime(),
-            QnA: questions,
+            userID: user.uid,
         });
     }
     const getDocumentsOfEntireCollection = async () => {
-        const snapshot = await getDocs(collection(firestore, 'interviews'));
-        let arr1;
-        snapshot.forEach((el)=>{
-            arr1 = el.data().questionsList.questions;
-        })
-        const questions = arr1.map((item) => item.question);
-        console.log(questions[0]);
+        const q = query(
+            collection(firestore, "interviews"),
+            orderBy("timestamp", "desc"),
+            limit(1)
+        );
+        const querySnapshot = await getDocs(q);
+
+        const mostRecentDocument = querySnapshot.docs[0]?.data().questionsList.questions.map((item)=>item.question);
+
+        return mostRecentDocument;
     }
     return (
         <FirebaseContext.Provider value={{ signUpWithGoogle, createNewUserWithEmailAndPassword, signInUserWithEmailAndPassword, isLoggedIn, doSignOut, addQuestionToDatabase, getDocumentsOfEntireCollection }}>
