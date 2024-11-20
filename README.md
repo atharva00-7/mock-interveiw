@@ -9,5 +9,8 @@
         - Firebase.jsx
     - lib/
         - utils.js
+    - pages/
+        - components/
+           - HorizontalCards.jsx
     
 
