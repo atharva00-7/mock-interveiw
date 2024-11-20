@@ -1,6 +1,7 @@
-src/
-├── assets/
-├── components/
+# Folder Structure
+  -src/
+    ─ assets/
+    ─components/
 │   ├── ui/
 │   └── InterviewDescription.jsx
 │   └── ManualForm.jsx
