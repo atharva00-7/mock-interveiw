@@ -1,16 +1,16 @@
 # Folder Structure
   - src/
     - assets/ -> Contains images
-    - components/
+    - components/ -> ShadCN components
         - ui/
-    - constants/
+    - constants/ -> Folder containing files to reomve all the hardcoded texts in the application
         - texts.json
-    - context/
+    - context/ -> Backend services are written in this folder
         - Firebase.jsx
-    - lib/
+    - lib/  -> ShadCN's dependencies
         - utils.js
-    - pages/
-        - components/
+    - pages/ -> All pages and components are written in this file
+        - components/ -> This file consists of all the components 
            - HorizontalCards.jsx
            - InterviewDesciption.jsx
            - ManualForm.jsx
