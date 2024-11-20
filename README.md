@@ -1,4 +1,20 @@
-# Folder Structure
+## Target this week: Getting different questions each time for same user 
+
+## Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/atharva00-7/mock-interview.git
+
+2. **Install the dependencies:**
+   ```bash
+   npm install
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+
+## Folder Structure
   - src/
     - assets/ -> Contains images
     - components/ -> ShadCN components
@@ -26,6 +42,6 @@
     - index.css
     - main.jsx
 - Utils/
-   GeminiAI.js
+    - GeminiAI.js
     
 
