@@ -1,8 +1,8 @@
 # Folder Structure
   - src/
     - assets/
-    ─components/
-│   ├── ui/
+    - components/
+        - ui/
 │   └── InterviewDescription.jsx
 │   └── ManualForm.jsx
 │   └── Navbar.jsx
