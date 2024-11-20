@@ -1,6 +1,6 @@
 # Folder Structure
   - src/
-    - assets/
+    - assets/ -> Contains images
     - components/
         - ui/
     - constants/
