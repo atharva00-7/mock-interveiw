@@ -1,6 +1,6 @@
 # Folder Structure
-  -src/
-    ─ assets/
+  - src/
+    - assets/
     ─components/
 │   ├── ui/
 │   └── InterviewDescription.jsx
