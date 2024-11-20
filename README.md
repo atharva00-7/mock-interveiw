@@ -10,7 +10,9 @@
    ```bash
    npm install
 
-3. **Start the development server:**
+3. **Create .env file in root folder(All keys have been shared to all the group members):**
+
+4. **Start the development server:**
    ```bash
    npm run dev
 
