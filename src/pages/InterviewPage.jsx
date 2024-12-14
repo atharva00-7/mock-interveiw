@@ -15,10 +15,16 @@ const InterviewPage = () => {
   const videoRef = useRef(null);
   const mediaStreamRef = useRef(null);
   const firebase = useFirebase();
-  const [questions, setQuestions] = useState([]);
-  useEffect(() => {
-    getCollection();
-  }, []);
+  const [questions, setQuestions] = useState([
+    "What is the difference between state and props in React?",
+    "Explain the concept of React hooks and give examples of commonly used hooks.",
+    "What is the Virtual DOM, and how does React use it for efficient rendering?",
+    "How does the Context API work, and when should it be used in a React application?",
+    "What are React keys, and why are they important in rendering lists?"
+  ]);
+  // useEffect(() => {
+  //   getCollection();
+  // }, []);
   const getCollection = async () => {
     try {
       const result = await firebase.getDocumentsOfEntireCollection();
@@ -84,6 +90,18 @@ const InterviewPage = () => {
       if (isSpeakerOn) {
         // Speak the new question after state update
         setTimeout(() => speakQuestion(nextQuestionIndex), 100);
+      }
+    }
+  };
+
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      const previousQuestionIndex = currentQuestion - 1;
+      setCurrentQuestion(previousQuestionIndex);
+
+      if (isSpeakerOn) {
+        // Speak the new question after state update
+        setTimeout(() => speakQuestion(previousQuestionIndex), 100);
       }
     }
   };
@@ -221,9 +239,15 @@ const InterviewPage = () => {
                           >
                             Next Question
                           </Button>
-                          <span className="text-sm font-medium text-gray-500 bg-gray-100 px-4 py-2 rounded-full">
-                            {isVideoOn && isAudioOn ? "📹 🎤 Devices Active" : "⚠️ Check Devices"}
-                          </span>
+
+                          <Button
+                            onClick={handlePreviousQuestion}
+                            disabled={currentQuestion <= 0}
+                            size="lg"
+                            className="px-8"
+                          >
+                            Previous Question
+                          </Button>
                         </div>
                       )}
                     </div>
