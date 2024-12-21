@@ -7,6 +7,7 @@ import InterviewDetailPage from "./pages/InterviewDetailPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
+import DemoPage from "./pages/DemoPage";
 const App = () => {
   const firebase = useFirebase();
   return (
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/interviewForm" element={<InterviewDetailPage />} />
             <Route path="/interviewPage" element={<InterviewPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/demo" element={<DemoPage />} />
           </>
         )
       }

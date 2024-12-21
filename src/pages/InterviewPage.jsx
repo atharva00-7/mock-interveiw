@@ -88,7 +88,6 @@ const InterviewPage = () => {
       setCurrentQuestion(nextQuestionIndex);
 
       if (isSpeakerOn) {
-        // Speak the new question after state update
         setTimeout(() => speakQuestion(nextQuestionIndex), 100);
       }
     }
@@ -100,7 +99,6 @@ const InterviewPage = () => {
       setCurrentQuestion(previousQuestionIndex);
 
       if (isSpeakerOn) {
-        // Speak the new question after state update
         setTimeout(() => speakQuestion(previousQuestionIndex), 100);
       }
     }
